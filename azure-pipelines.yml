@@ -1,0 +1,25 @@
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: "20.x"
+  displayName: 'Install Node.js'
+
+- script: npm install
+  displayName: 'Installing dependencies'
+
+
+
+- script: npm run build
+  displayName: 'Building the app'
+
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: 'dist'
+    skip_app_build: true
+    is_static_export: true
+    azure_static_web_apps_api_token: '684866834a83c90adb6bbd6f3f2bf54489add4a5c18dfd1a67353a40276e16a04-75200611-87a0-44a2-95f1-08b8ab0a7aae003346967'
