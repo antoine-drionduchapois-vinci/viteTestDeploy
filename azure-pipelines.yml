@@ -12,7 +12,14 @@ steps:
 - script: npm install
   displayName: 'Installing dependencies'
 
+- script: npm run prettier
+  displayName: 'Checking format'
 
+- script: npm run lint
+  displayName: 'Checking lint'
+
+- script: npm run jest--coverage
+  displayName: 'Checking unit tests'
 
 - script: npm run build
   displayName: 'Building the app'
